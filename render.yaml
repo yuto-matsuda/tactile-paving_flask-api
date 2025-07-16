@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: flask-upload-api
+    env: python
+    buildCommand: ""
+    startCommand: python app.py
+    envVars:
+      - key: CLOUDINARY_CLOUD_NAME
+        fromEnv: CLOUDINARY_CLOUD_NAME
+      - key: CLOUDINARY_API_KEY
+        fromEnv: CLOUDINARY_API_KEY
+      - key: CLOUDINARY_API_SECRET
+        fromEnv: CLOUDINARY_API_SECRET
+      - key: SUPABASE_URL
+        fromEnv: SUPABASE_URL
+      - key: SUPABASE_KEY
+        fromEnv: SUPABASE_KEY
