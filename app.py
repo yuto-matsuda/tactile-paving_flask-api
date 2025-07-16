@@ -35,7 +35,8 @@ def upload():
     if not img:
         return 'Invalid request', 400
     
-    result = cloudinary.uploader.upload(img)
+    fname = f'{cam_id}_{cam_timestamp}'.replace(':', '-')
+    result = cloudinary.uploader.upload(img, public_id=fname)
     url = result['secure_url']
     
     data = {
@@ -56,4 +57,8 @@ def upload():
         return 'DB error', 500
     
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5005)
+    debug = os.getenv('DEBUG_MODE', 'False') == 'True'
+    if debug:
+        app.run(host='0.0.0.0', port=5005, debug=True)
+    else:
+        app.run()
