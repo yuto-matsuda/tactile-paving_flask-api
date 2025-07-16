@@ -57,8 +57,7 @@ def upload():
         return 'DB error', 500
     
 if __name__ == '__main__':
-    debug = os.getenv('DEBUG_MODE', 'False') == 'True'
-    if debug:
+    if os.getenv('DEBUG_MODE', 'False') == 'True':
         app.run(host='0.0.0.0', port=5005, debug=True)
     else:
         app.run()
