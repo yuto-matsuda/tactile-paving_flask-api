@@ -7,6 +7,10 @@ load_dotenv()
 
 app = Flask(__name__)
 register_routes(app)
+
+@app.route('/')
+def home():
+    return {'status': 'running'}
     
 if __name__ == '__main__':
     if os.getenv('DEBUG_MODE', 'False') == 'True':
