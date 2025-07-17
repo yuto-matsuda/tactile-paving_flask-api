@@ -8,7 +8,7 @@ post_bp = Blueprint('post', __name__)
 
 @post_bp.route('/post', methods=['POST'])
 def post():
-    cam_id        = request.form.get('cid')
+    cam_id        = int(request.form.get('cid'))
     cam_timestamp = request.form.get('ts')
     sensor_data   = json.loads(request.form.get('sensor'))
     img           = request.files.get('img')
@@ -17,6 +17,11 @@ def post():
     lng           = sensor_data.get('lng')
     spd           = sensor_data.get('spd')
     accs          = sensor_data.get('accs')
+
+    for acc in accs:
+        acc['ax'] = float(acc['ax'])
+        acc['ay'] = float(acc['ay'])
+        acc['az'] = float(acc['az'])
 
     if not img:
         return 'Invalid request', 400
