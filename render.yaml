@@ -3,7 +3,7 @@ services:
     name: flask-upload-api
     env: python
     buildCommand: ""
-    startCommand: python app.py
+    startCommand: gunicorn app:app
     envVars:
       - key: CLOUDINARY_CLOUD_NAME
         fromEnv: CLOUDINARY_CLOUD_NAME
